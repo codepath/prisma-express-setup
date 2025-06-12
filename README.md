@@ -9,19 +9,23 @@
 
 ## Development
 
-1. Create a `shelterdb` Postgres database.
-
-    ```bash
-    createdb shelterdb
-    ```
-
-2. Create an `.env` file at the root of the project.
+1. Create an `.env` file at the root of the project.
 
     ```text
-    POSTGRES_USER="user"
-    POSTGRES_PASSWORD="1234"
-    POSTGRES_DB="shelterdb"
-    POSTGRES_URL="postgresql://user:1234@postgres:5432/shelterdb?schema=public"
+    DATABASE_URL="postgresql://user:1234@localhost:5432/shelterdb?schema=public"
+    ```
+
+2. Create a Postgres `user` role with password `1234`, and a `shelterdb` Postgres database.
+
+    ```bash
+    psql postgres
+    ```
+
+    ```sql
+    CREATE ROLE "user" WITH LOGIN PASSWORD '1234';
+    ALTER ROLE "user" CREATEDB;
+    CREATE DATABASE "shelterdb" OWNER "user";
+    GRANT ALL PRIVILEGES ON DATABASE "shelterdb" TO "user";
     ```
 
 3. Run the project.
@@ -34,6 +38,6 @@
 
 ## Deployment to Render.com
 
-- Provision a Postgres database, deploy the web service to Render by linking your GitHub repo, set `POSTGRES_URL` env variable.
+- Provision a Postgres database, deploy the web service to Render by linking your GitHub repo, set `DATABASE_URL` env variable.
 
 - The build command in Render should be `npm install && npm run build`

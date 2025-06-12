@@ -6,21 +6,20 @@
 
 generator client {
   provider = "prisma-client-js"
+  seed = "prisma/seed.js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("POSTGRES_URL")
+  url      = env("DATABASE_URL")
 }
 
 model Pet {
   id          Int      @id @default(autoincrement())
   name        String
-  species     String
-  breed       String?
+  type        String
   age         Int?
   adopted     Boolean  @default(false)
-  intakeDate  DateTime @default(now())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
