@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "node --env-file=.env --watch index.js",
     "start": "node index.js",
-    "build": "npm run db:setup",
+    "build": "npm install && run db:setup",
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name init --skip-generate",
     "db:reset": "prisma migrate reset --force --skip-seed --skip-generate",

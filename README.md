@@ -40,4 +40,4 @@
 
 - Provision a Postgres database, deploy the web service to Render by linking your GitHub repo, set `DATABASE_URL` env variable.
 
-- The build command in Render should be `npm install && npm run build`
+- The build command in Render should be `npm run build`
