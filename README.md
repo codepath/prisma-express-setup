@@ -12,20 +12,20 @@
 1. Create an `.env` file at the root of the project.
 
     ```text
-    DATABASE_URL="postgresql://user:1234@localhost:5432/shelterdb?schema=public"
+    DATABASE_URL="postgresql://app_user:1234@localhost:5432/shelterdb?schema=public"
     ```
 
-2. Create a Postgres `user` role with password `1234`, and a `shelterdb` Postgres database.
+2. Create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
 
     ```bash
     psql postgres
     ```
 
     ```sql
-    CREATE ROLE "user" WITH LOGIN PASSWORD '1234';
-    ALTER ROLE "user" CREATEDB;
-    CREATE DATABASE "shelterdb" OWNER "user";
-    GRANT ALL PRIVILEGES ON DATABASE "shelterdb" TO "user";
+    CREATE ROLE app_user WITH LOGIN PASSWORD '1234';
+    ALTER ROLE app_user CREATEDB;
+    CREATE DATABASE shelterdb OWNER app_user;
+    GRANT ALL PRIVILEGES ON DATABASE shelterdb TO app_user;
     ```
 
 3. Run the project.
