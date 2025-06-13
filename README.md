@@ -7,19 +7,29 @@
 1. Postgres
 2. NodeJS
 
-## Development
+Make sure you have [set up Postgres](https://github.com/codepath/postgres-env-setup-apple) in your dev machine.
 
-1. Create an `.env` file at the root of the project.
+## Setup
 
-    ```text
-    DATABASE_URL="postgresql://app_user:1234@localhost:5432/shelterdb?schema=public"
-    ```
+During setup we will create the following:
 
-2. We will now create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
+1. A `app_user` Postgres **role**, with password `1234`.
+2. A `shelterdb` **database** owned by `app_user`.
+3. A **connection URL** that assumes the above, and also that your Postgres server is running on `localhost` on port `5432`.
+
+**If you wish to use different names, password or port number, you will need to adapt the following instructions.**
+
+### Instructions
+
+1. We will create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
+
+    Connect to the `postgres` database:
 
     ```bash
     psql postgres
     ```
+
+    Run the following SQL commands:
 
     ```sql
     DROP DATABASE IF EXISTS shelterdb;
@@ -27,6 +37,12 @@
     CREATE ROLE app_user WITH LOGIN PASSWORD '1234';
     ALTER ROLE app_user CREATEDB;
     CREATE DATABASE shelterdb OWNER app_user;
+    ```
+
+2. Create an `.env` file at the root of the project.
+
+    ```text
+    DATABASE_URL="postgresql://app_user:1234@localhost:5432/shelterdb?schema=public"
     ```
 
 3. Run the project.
