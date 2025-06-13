@@ -2,7 +2,7 @@ const prisma = require('../prisma/prisma')
 
 module.exports = {
   async find(where) {
-    // SELECT * FROM "Pet"
+    // SELECT * FROM "Pet" WHERE type='dog';
     const pets = await prisma.pet.findMany({ where })
     return pets
   },
