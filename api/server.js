@@ -8,7 +8,7 @@ server.use(cors())
 
 // [GET] /api/pets/:id
 server.get('/api/pets/:id', async (req, res, next) => {
-  const { id } = req.params
+  const id = Number(req.params.id)
   try {
     const pet = await Pet.find({ id: Number(id) })
     if (!pet.length) {
@@ -51,11 +51,11 @@ server.post('/api/pets', async (req, res, next) => {
 
 // [PUT] /api/pets/:id
 server.put('/api/pets/:id', async (req, res, next) => {
-  const { id } = req.params
+  const id = Number(req.params.id)
   const changes = req.body
   try {
     // if the id is invalid, or if the changes are invalid, this will error:
-    const updated = await Pet.update(id, changes)
+    const updated = await Pet.update(Number(id), changes)
     res.json(updated)
   } catch (err) {
     next(err)
@@ -64,7 +64,7 @@ server.put('/api/pets/:id', async (req, res, next) => {
 
 // [DELETE] /api/pets/:id
 server.delete('/api/pets/:id', async (req, res, next) => {
-  const { id } = req.params
+  const id = Number(req.params.id)
   try {
     const deleted = await Pet.delete(id)
     res.json(deleted)

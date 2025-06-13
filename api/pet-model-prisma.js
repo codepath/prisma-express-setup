@@ -26,7 +26,7 @@ module.exports = {
     // PUT http://localhost:5432/api/pets/1 { adopted: true }
     // UPDATE "Pet" SET adopted = true WHERE id = 1;
     const updated = await prisma.Pet.update({
-      where: { id: Number(id) },
+      where: { id },
       data: changes,
     })
     return updated
@@ -34,6 +34,9 @@ module.exports = {
 
   async delete(id) {
     // DELETE FROM "Pet" WHERE id = 1
-
+    const deleted = await prisma.Pet.delete({
+      where: { id },
+    })
+    return deleted
   },
 }
