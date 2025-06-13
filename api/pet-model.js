@@ -5,12 +5,15 @@ function getId() {
 }
 
 let pets = [
-  { id: getId(), name: 'Luna', type: 'Dog', age: 3, adopted: false },
-  { id: getId(), name: 'Milo', type: 'Cat', age: 2, adopted: true },
+  { id: getId(), age: 3, name: "Luna", type: "dog", adopted: false },
+  { id: getId(), age: 2, name: "Milo", type: "cat", adopted: false },
+  { id: getId(), age: 1, name: "Bubbles", type: "fish", adopted: false },
+  { id: getId(), age: 5, name: "Coco", type: "parrot", adopted: false },
+  { id: getId(), age: 15, name: "Bicho", type: "dog", adopted: true }
 ]
 
 module.exports = {
-  async findAll() {
+  async find() {
     // SELECT * FROM "Pet"
     return pets
   },
@@ -32,7 +35,7 @@ module.exports = {
     const pet = pets.find(p => p.id == id)
     if (!pet) return null
 
-    const updatedPet = { ...pet, ...changes, id }
+    const updatedPet = { ...pet, ...changes }
     pets = pets.map(p => (p.id == id ? updatedPet : p))
     return updatedPet
   },

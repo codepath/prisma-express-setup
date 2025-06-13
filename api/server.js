@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const Pet = require('./pet-model-prisma')
+const Pet = require('./pet-model')
 
 const server = express()
 server.use(express.json())
