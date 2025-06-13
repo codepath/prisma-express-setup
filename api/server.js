@@ -8,8 +8,8 @@ server.use(cors())
 
 // [GET] /api/pets/:id
 server.get('/api/pets/:id', async (req, res, next) => {
+  const { id } = req.params
   try {
-    const { id } = req.params
     const pet = await Pet.find({ id: Number(id) })
     if (!pet.length) {
       next({ status: 404, message: `No pet found with ID ${id}` })
@@ -23,8 +23,8 @@ server.get('/api/pets/:id', async (req, res, next) => {
 
 // [GET] /api/pets
 server.get('/api/pets', async (req, res, next) => {
+  const { type } = req.query
   try {
-    const { type } = req.query
     // The details about how the pets are pulled from the DB are abstracted away
     const pets = await Pet.find({ type })
     if (pets.length) {
@@ -39,8 +39,8 @@ server.get('/api/pets', async (req, res, next) => {
 
 // [POST] /api/pets
 server.post('/api/pets', async (req, res, next) => {
+  const newPet = req.body
   try {
-    const newPet = req.body
     // Validate that newPet has all required fields. Then:
     const created = await Pet.create(newPet)
     res.status(201).json(created)
@@ -50,30 +50,26 @@ server.post('/api/pets', async (req, res, next) => {
 })
 
 // [PUT] /api/pets/:id
-server.put('/api/pets/:id', async (req, res) => {
-  const { name, type, age } = req.body
-  if (!name || !type || age === undefined) {
-    return res.status(400).json({ message: 'name, type and age are required' })
-  }
+server.put('/api/pets/:id', async (req, res, next) => {
+  const { id } = req.params
+  const changes = req.body
   try {
-    const updated = await Pet.update(req.params.id, req.body)
-    updated
-      ? res.json(updated)
-      : res.status(404).json({ message: `pet not found with id ${req.params.id}` })
+    // if the id is invalid, or if the changes are invalid, this will error:
+    const updated = await Pet.update(id, changes)
+    res.json(updated)
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    next(err)
   }
 })
 
 // [DELETE] /api/pets/:id
-server.delete('/api/pets/:id', async (req, res) => {
+server.delete('/api/pets/:id', async (req, res, next) => {
+  const { id } = req.params
   try {
-    const deleted = await Pet.delete(req.params.id)
-    deleted
-      ? res.json(deleted)
-      : res.status(404).json({ message: `pet not found with id ${req.params.id}` })
+    const deleted = await Pet.delete(id)
+    res.json(deleted)
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    next(err)
   }
 })
 

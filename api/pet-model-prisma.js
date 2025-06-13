@@ -15,10 +15,10 @@ module.exports = {
     return pets
   },
 
-  async create({ name, type, age }) {
+  async create(changes) {
     // POST http://localhost:5432/api/pets/1 { name: "Fido", type: "dog": age: 5 }
     // INSERT INTO "Pet" (name, type, age) VALUES ('Fido', 'dog', 5);
-    const created = await prisma.Pet.create({ data: { name, type, age } })
+    const created = await prisma.Pet.create({ data: changes })
     return created
   },
 
