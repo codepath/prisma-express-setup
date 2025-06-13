@@ -17,7 +17,7 @@ During setup we will create the following:
 2. A `shelterdb` **database** owned by `app_user`.
 3. A **connection URL** that assumes the above, and also that your Postgres server is running on `localhost` on port `5432`.
 
-**If you wish to use different names, password or port number, you will need to adapt the following instructions.**
+**If you wish to use different names, password or port number, you will need to adapt the following instructions,** as well as the `psql` script inside your `package.json` file.
 
 ### Instructions
 
@@ -45,13 +45,13 @@ During setup we will create the following:
     \q
     ```
 
-2. Create an `.env` file at the root of the project.
+2. Create a `.env` file at the root of the project:
 
     ```text
     DATABASE_URL="postgresql://app_user:1234@localhost:5432/shelterdb?schema=public"
     ```
 
-3. Run the project.
+3. Launch the project:
 
     ```bash
     npm install

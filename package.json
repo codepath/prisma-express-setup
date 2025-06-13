@@ -14,7 +14,8 @@
     "db:migrate": "prisma migrate dev --name init --skip-generate",
     "db:reset": "prisma migrate reset --force --skip-seed --skip-generate",
     "db:init": "npm run db:reset && npm run db:migrate && prisma generate && npm run db:seed",
-    "db:seed": "node prisma/seed.js"
+    "db:seed": "node prisma/seed.js",
+    "psql": "psql shelterdb -U app_user"
   },
   "dependencies": {
     "@prisma/client": "^6.8.1",

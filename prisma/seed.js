@@ -4,10 +4,10 @@ const prisma = new PrismaClient()
 
 async function main() {
   const pets = [
-    { name: 'Luna', type: 'Dog', age: 3, adopted: false },
-    { name: 'Milo', type: 'Cat', age: 2, adopted: true },
-    { name: 'Bubbles', type: 'Fish', age: 1, adopted: false },
-    { name: 'Coco', type: 'Parrot', age: 5, adopted: true },
+    { name: 'Luna', type: 'dog', age: 3, adopted: false },
+    { name: 'Milo', type: 'cat', age: 2, adopted: false },
+    { name: 'Bubbles', type: 'fish', age: 1, adopted: false },
+    { name: 'Coco', type: 'parrot', age: 5, adopted: false },
   ]
 
   for (const pet of pets) {

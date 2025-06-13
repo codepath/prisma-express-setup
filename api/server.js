@@ -1,19 +1,16 @@
 const express = require('express')
 const cors = require('cors')
-const Pet = require('./pet-model')
+const Pet = require('./pet-model-prisma')
 
 const server = express()
 server.use(express.json())
 server.use(cors())
 
-// [GET] /
-server.get('/', (req, res) => {
-  res.json({ hello: 'world' })
-})
-
 // [GET] /api/pets
 server.get('/api/pets', async (req, res, next) => {
   try {
+    const { type } = req.query
+    // The details about how the pets are pulled from the DB are abstracted away
     const pets = await Pet.findAll()
     res.json(pets)
   } catch (err) {
@@ -70,7 +67,12 @@ server.delete('/api/pets/:id', async (req, res) => {
   }
 })
 
-// Error handling
+// [CATCH-ALL]
+server.use('*', (req, res, next) => {
+  next({ status: 404 })
+})
+
+// Error handling middleware
 server.use((err, req, res, next) => {
   const { message, status = 500 } = err
   console.log(message)

@@ -4,7 +4,6 @@ CREATE TABLE "Pet" (
     "name" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "age" INTEGER,
-    "gaga" INTEGER,
     "adopted" BOOLEAN NOT NULL DEFAULT false,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
