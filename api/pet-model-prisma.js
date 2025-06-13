@@ -11,7 +11,7 @@ module.exports = {
   async findById(id) {
     // GET http://localhost:5432/api/pets/1
     // SELECT * FROM "Pet" WHERE id = 1;
-    const pets = await prisma.Pet.findMany({ where })
+    const pets = await prisma.Pet.findById(id)
     return pets
   },
 
@@ -33,7 +33,8 @@ module.exports = {
   },
 
   async delete(id) {
-    // DELETE FROM "Pet" WHERE id = 1
+    // DELETE http://localhost:5432/api/pets/1
+    // DELETE FROM "Pet" WHERE id = 1;
     const deleted = await prisma.Pet.delete({
       where: { id },
     })

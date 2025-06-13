@@ -11,10 +11,10 @@ server.get('/api/pets/:id', async (req, res, next) => {
   const id = Number(req.params.id)
   try {
     const pet = await Pet.find({ id: Number(id) })
-    if (!pet.length) {
-      next({ status: 404, message: `No pet found with ID ${id}` })
-    } else {
+    if (pet.length) {
       res.json(pet)
+    } else {
+      next({ status: 404, message: `No pet found with ID ${id}` })
     }
   } catch (err) {
     next(err)
@@ -30,7 +30,7 @@ server.get('/api/pets', async (req, res, next) => {
     if (pets.length) {
       res.json(pets)
     } else {
-      next({ status: 404, message: 'No pets found matching search criteria' })
+      next({ status: 404, message: 'No pets found match the search criteria' })
     }
   } catch (err) {
     next(err)
