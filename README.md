@@ -39,6 +39,12 @@ During setup we will create the following:
     CREATE DATABASE shelterdb OWNER app_user;
     ```
 
+    Quit the connection to the `postgres` database:
+
+    ```sql
+    \q
+    ```
+
 2. Create an `.env` file at the root of the project.
 
     ```text
