@@ -11,8 +11,8 @@ module.exports = {
   async findById(id) {
     // GET http://localhost:5432/api/pets/1
     // SELECT * FROM "Pet" WHERE id = 1;
-    const pets = await prisma.Pet.findById(id)
-    return pets
+    const pet = await prisma.Pet.findUnique({ where: { id } })
+    return pet
   },
 
   async create(changes) {

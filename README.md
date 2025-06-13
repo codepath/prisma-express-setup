@@ -29,7 +29,7 @@ During setup we will create the following:
     psql postgres
     ```
 
-    Run the following SQL commands:
+    Paste and run the following SQL commands:
 
     ```sql
     DROP DATABASE IF EXISTS shelterdb;
