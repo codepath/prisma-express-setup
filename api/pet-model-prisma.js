@@ -1,9 +1,9 @@
 const prisma = require('../prisma/prisma')
 
 module.exports = {
-  async findAll() {
+  async find(where) {
     // SELECT * FROM "Pet"
-    const pets = await prisma.pet.findMany()
+    const pets = await prisma.pet.findMany({ where })
     return pets
   },
 

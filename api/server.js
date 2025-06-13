@@ -11,7 +11,7 @@ server.get('/api/pets', async (req, res, next) => {
   try {
     const { type } = req.query
     // The details about how the pets are pulled from the DB are abstracted away
-    const pets = await Pet.findAll()
+    const pets = await Pet.find({ type })
     res.json(pets)
   } catch (err) {
     next(err)
