@@ -15,7 +15,7 @@
     DATABASE_URL="postgresql://app_user:1234@localhost:5432/shelterdb?schema=public"
     ```
 
-2. Create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
+2. We will now create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
 
     ```bash
     psql postgres
