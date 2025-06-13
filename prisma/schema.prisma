@@ -20,5 +20,5 @@ model Pet {
   age         Int?
   adopted     Boolean  @default(false)
   createdAt   DateTime @default(now())
-  updatedAt DateTime @updatedAt @default(now())
+  updatedAt   DateTime @updatedAt @default(now())
 }
