@@ -22,28 +22,23 @@ server.get('/api/pets', async (req, res, next) => {
 })
 
 // [GET] /api/pets/:id
-server.get('/api/pets/:id', async (req, res) => {
+server.get('/api/pets/:id', async (req, res, next) => {
   try {
     const pet = await Pet.findById(req.params.id)
-    pet
-      ? res.json(pet)
-      : res.status(404).json({ message: `no pet with id ${req.params.id}` })
+    if (!pet) return next({ status: 404, message: 'Pet not found' })
+    res.json(pet)
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    next(err)
   }
 })
 
 // [POST] /api/pets
 server.post('/api/pets', async (req, res) => {
-  const { name, weight } = req.body
-  if (!name || !weight) {
-    return res.status(400).json({ message: 'name and weight are required' })
-  }
   try {
     const newPet = await Pet.create(req.body)
     res.status(201).json(newPet)
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    next(err)
   }
 })
 
@@ -73,6 +68,13 @@ server.delete('/api/pets/:id', async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
+})
+
+// Error handling
+server.use((err, req, res, next) => {
+  const { message, status = 500 } = err
+  console.log(message)
+  res.status(status).json({ message }) // Unsafe in prod
 })
 
 module.exports = server

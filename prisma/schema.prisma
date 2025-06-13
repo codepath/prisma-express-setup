@@ -18,6 +18,7 @@ model Pet {
   name        String
   type        String
   age         Int?
+  gaga         Int?
   adopted     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
