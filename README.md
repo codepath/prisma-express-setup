@@ -18,14 +18,22 @@
 2. Create a Postgres `app_user` role with password `1234`, and a `shelterdb` Postgres database.
 
     ```bash
-    npm run db:create
+    psql postgres
+    ```
+
+    ```sql
+    DROP DATABASE IF EXISTS shelterdb;
+    DROP ROLE IF EXISTS app_user;
+    CREATE ROLE app_user WITH LOGIN PASSWORD '1234';
+    ALTER ROLE app_user CREATEDB;
+    CREATE DATABASE shelterdb OWNER app_user;
     ```
 
 3. Run the project.
 
     ```bash
     npm install
-    npm run db:setup
+    npm run db:init
     npm run dev
     ```
 
