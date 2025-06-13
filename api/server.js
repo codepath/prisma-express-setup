@@ -38,10 +38,12 @@ server.get('/api/pets', async (req, res, next) => {
 })
 
 // [POST] /api/pets
-server.post('/api/pets', async (req, res) => {
+server.post('/api/pets', async (req, res, next) => {
   try {
-    const newPet = await Pet.create(req.body)
-    res.status(201).json(newPet)
+    const newPet = req.body
+    // Validate that newPet has all required fields. Then:
+    const created = await Pet.create(newPet)
+    res.status(201).json(created)
   } catch (err) {
     next(err)
   }
