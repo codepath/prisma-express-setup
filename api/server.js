@@ -6,24 +6,32 @@ const server = express()
 server.use(express.json())
 server.use(cors())
 
+// [GET] /api/pets/:id
+server.get('/api/pets/:id', async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const pet = await Pet.find({ id: Number(id) })
+    if (!pet.length) {
+      next({ status: 404, message: `No pet found with ID ${id}` })
+    } else {
+      res.json(pet)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 // [GET] /api/pets
 server.get('/api/pets', async (req, res, next) => {
   try {
     const { type } = req.query
     // The details about how the pets are pulled from the DB are abstracted away
     const pets = await Pet.find({ type })
-    res.json(pets)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// [GET] /api/pets/:id
-server.get('/api/pets/:id', async (req, res, next) => {
-  try {
-    const pet = await Pet.findById(req.params.id)
-    if (!pet) return next({ status: 404, message: 'Pet not found' })
-    res.json(pet)
+    if (pets.length) {
+      res.json(pets)
+    } else {
+      next({ status: 404, message: 'No pets found matching search criteria' })
+    }
   } catch (err) {
     next(err)
   }
