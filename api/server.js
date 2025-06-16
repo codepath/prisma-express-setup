@@ -10,7 +10,7 @@ server.use(cors())
 server.get('/api/pets/:id', async (req, res, next) => {
   const id = Number(req.params.id)
   try {
-    const pet = await Pet.findById(Number(id))
+    const pet = await Pet.findById(id)
     if (pet) {
       res.json(pet)
     } else {
@@ -64,7 +64,7 @@ server.put('/api/pets/:id', async (req, res, next) => {
   const changes = req.body
   try {
     // Make sure the ID is valid
-    const pet = await Pet.findById(Number(id))
+    const pet = await Pet.findById(id)
     // Validate that the changes include at least one valid change
     const changesValid = (
       changes.name !== undefined ||
@@ -73,7 +73,7 @@ server.put('/api/pets/:id', async (req, res, next) => {
       changes.adopted !== undefined
     )
     if (pet && changesValid) {
-      const updated = await Pet.update(Number(id), changes)
+      const updated = await Pet.update(id, changes)
       res.json(updated)
     } else {
       next({ status: 422, message: 'Invalid ID or invalid changes' })
@@ -87,7 +87,7 @@ server.put('/api/pets/:id', async (req, res, next) => {
 server.delete('/api/pets/:id', async (req, res, next) => {
   const id = Number(req.params.id)
   try {
-    const pet = await Pet.findById(Number(id))
+    const pet = await Pet.findById(id)
     if (pet) {
       const deleted = await Pet.delete(id)
       res.json(deleted)
