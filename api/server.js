@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const Pet = require('./pet-model')
+const Pet = require('./pet-model-prisma')
 
 const server = express()
 server.use(express.json())
@@ -100,7 +100,7 @@ server.delete('/api/pets/:id', async (req, res, next) => {
 })
 
 // [CATCH-ALL]
-server.use('*', (req, res, next) => {
+server.use('/*', (req, res, next) => {
   next({ status: 404 })
 })
 
