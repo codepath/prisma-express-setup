@@ -36,9 +36,7 @@ module.exports = {
   async delete(id) {
     // DELETE http://localhost:5432/api/pets/1
     // DELETE FROM "Pet" WHERE id = 1;
-    const deleted = await prisma.pet.delete({
-      where: { id },
-    })
+    const deleted = await prisma.pet.delete({ where: { id } })
     return deleted
   },
 }
