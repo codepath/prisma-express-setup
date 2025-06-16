@@ -136,3 +136,5 @@ dist
 .pnp.*
 
 launch.json
+
+.DS_Store
