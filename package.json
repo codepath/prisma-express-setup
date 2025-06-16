@@ -11,11 +11,10 @@
     "dev": "node --env-file=.env --watch index.js",
     "start": "node index.js",
     "build": "npm install && npm run db:init",
-    "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev --name init --skip-generate",
-    "db:reset": "prisma migrate reset --force --skip-seed --skip-generate",
-    "db:init": "npm run db:reset && npm run db:migrate && npm run db:generate && npm run db:seed",
+    "db:migrate": "prisma migrate dev",
+    "db:reset": "prisma migrate reset --force",
     "db:seed": "node prisma/seed.js",
+    "db:init": "npm run db:reset && npm run db:migrate && npm run db:seed",
     "psql": "psql shelterdb -U app_user"
   },
   "dependencies": {
