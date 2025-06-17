@@ -97,7 +97,6 @@ model Pet {
   name        String
   type        String
   age         Int?
-  favToy      String?
   adopted     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @default(now())
