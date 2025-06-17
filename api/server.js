@@ -1,6 +1,6 @@
 const express = require('express')
 const cors = require('cors')
-const Pet = require('./pet-model')
+const Pet = require('./pet-model-prisma')
 const helmet = require('helmet')
 
 const server = express()
