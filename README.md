@@ -55,7 +55,6 @@ During setup we will create the following:
 
     ```bash
     npm install
-    npm run db:init
     npm run dev
     ```
 
@@ -64,3 +63,14 @@ During setup we will create the following:
 - Provision a Postgres database, deploy the web service to Render by linking your GitHub repo, set `DATABASE_URL` env variable.
 
 - The build command in Render should be `npm run build`
+
+## Follow Along
+
+1. Test the current state of the application (should work)
+1. Fix the `dev` script so it injects the `.env` file
+1. Use helmet middleware
+1. Disconnect the old model and connect the Prisma one
+1. Flesh out the schema for Pet
+1. Create migration files, explain scripts
+1. Alter schema to add `favToy`, run migrations
+1. Inspect the db using PgAdmin 4
