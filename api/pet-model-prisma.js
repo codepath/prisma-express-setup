@@ -18,16 +18,21 @@ module.exports = {
     return pet
   },
 
-  async create(changes) {
+  async create(newPet) {
     // POST http://localhost:3000/api/pets/1 { name: "Fido", type: "dog": age: 5 }
     // INSERT INTO "Pet" (name, type, age) VALUES ('Fido', 'dog', 5);
-
+    const created = await prisma.pet.create({ data: newPet })
+    return created
   },
 
   async update(id, changes) {
     // PUT http://localhost:3000/api/pets/1 { adopted: true }
     // UPDATE "Pet" SET adopted = true WHERE id = 1;
-
+    const updated = await prisma.update({
+      data: changes,
+      where: { id : id },
+    })
+    return updated
   },
 
   async delete(id) {
