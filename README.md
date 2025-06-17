@@ -75,3 +75,14 @@ During setup we will create the following:
 1. Create migration files, explain scripts
 1. Alter schema to add `favToy`, run migrations
 1. Inspect the db using PgAdmin 4
+
+## Catching Up With the Instructor
+
+Make sure to have cloned this repo  WITHOUT forking.
+
+`https://github.com/codepath/prisma-express-setup`
+
+```bash
+git fetch
+git reset --hard origin/feature
+```
