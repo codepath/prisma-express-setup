@@ -86,3 +86,18 @@ Make sure to have cloned this repo  WITHOUT forking.
 git fetch
 git reset --hard origin/feature
 ```
+
+## Finished Schema
+
+```text
+model Pet {
+  id          Int      @id @default(autoincrement())
+  name        String
+  type        String
+  age         Int?
+  favToy      String?
+  adopted     Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt @default(now())
+}
+```
