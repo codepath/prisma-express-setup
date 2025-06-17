@@ -67,14 +67,16 @@ During setup we will create the following:
 ## Follow Along
 
 1. Test the current state of the application (should work)
-1. Run through the steps above to set up the local database
-1. Fix the `dev` script so it injects the `.env` file
-1. Use helmet middleware
-1. Disconnect the old model and connect the Prisma one
-1. Flesh out the schema for Pet
-1. Create migration files, explain scripts
-1. Alter schema to add `favToy`, run migrations
-1. Inspect the db using PgAdmin 4
+2. Run through the steps above to set up the local database
+3. Fix the `dev` script so it injects the `.env` file
+4. Use helmet middleware
+5. Disconnect the old model and connect the Prisma one
+6. Flesh out the schema for Pet
+7. Create migration files, explain scripts
+8. Alter schema to add `favToy`, run migrations
+9. Inspect the db using PgAdmin 4
+10. Demo pull request
+11. Walk over deployment
 
 ## Catching Up With the Instructor
 
