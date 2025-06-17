@@ -28,7 +28,7 @@ module.exports = {
   async update(id, changes) {
     // PUT http://localhost:3000/api/pets/1 { adopted: true }
     // UPDATE "Pet" SET adopted = true WHERE id = 1;
-    const updated = await prisma.update({
+    const updated = await prisma.pet.update({
       data: changes,
       where: { id : id },
     })
